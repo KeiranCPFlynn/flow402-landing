@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Flow402 Landing
+==============
 
-## Getting Started
+Standalone marketing site for [flow402.com](https://flow402.com). Built with Next.js App Router, TypeScript, and Tailwind to introduce Flow402 and capture interest for the private beta.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router, static export)
+- React 19 + TypeScript
+- Tailwind CSS (v4, via `@import "tailwindcss"`)
+- Optional analytics via Plausible
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then visit [http://localhost:3000](http://localhost:3000). The main entry point is `app/page.tsx`. Tailwind utilities live inline—no separate config file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Useful scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm lint   # eslint
+pnpm build  # production build (webpack)
+pnpm start  # preview the production build
+```
 
-## Learn More
+> Note: `package.json` pins `next build --webpack` to avoid Turbopack networking issues in certain environments.
 
-To learn more about Next.js, take a look at the following resources:
+## Content quick-reference
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Hero copy**: `app/page.tsx` (look for “Make 402 invisible.” section).  
+- **CTA buttons**: handled via `components/apply-button.tsx`; all CTAs open the Tally form in a new tab and smooth-scroll to `#apply`. Update the URL there.  
+- **How it works / Why Flow402 / Use cases / FAQ**: arrays at the top of `app/page.tsx`.  
+- **Code snippets**: `curlSnippet` and `tsSnippet` constants in `app/page.tsx`.  
+- **Privacy & Terms**: boilerplate pages at `app/privacy/page.tsx` and `app/terms/page.tsx`. Update copy there when legal text is finalized.  
+- **OpenGraph asset**: `public/og.png`. Replace with your own 1200x630 card when ready.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration
 
-## Deploy on Vercel
+| Variable           | Purpose                                              | Default |
+|--------------------|------------------------------------------------------|---------|
+| `PLAUSIBLE_DOMAIN` | If set, embeds `https://plausible.io/js/script.js`.  | unset   |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add env vars via Vercel project settings or a `.env.local` file (never commit secrets).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+1. Push to the Vercel-connected repo or run `vercel` from the CLI.  
+2. Verify the preview build, then promote to production.  
+3. Attach `flow402.com` as the primary domain on the Vercel project.  
+4. Run Lighthouse against production to confirm performance and accessibility.
+
+Everything renders statically, so no additional API routes or database setup is required.
