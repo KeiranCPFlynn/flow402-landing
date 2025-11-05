@@ -3,48 +3,48 @@ import { ApplyButton } from "@/components/apply-button";
 import Logo from "./images/flow402-logo.jpeg";
 
 const howItWorks = [
-  "User tops up once (e.g., $5–$10 USDC)",
-  "Each paid request debits credits off-chain instantly",
-  "If low balance, your API returns HTTP 402",
-  "Occasional on-chain settlement for clear accounting",
+  "Top up once (e.g., $5–$10 USDC)",
+  "SDK sends an x402 payment per request; credits debit instantly",
+  "If funds run out, SDK handles 402: trigger top-up, then auto-retry",
+  "Periodic on-chain settlement for clear accounting",
 ];
 
 const featureCards = [
   {
     title: "Predictable UX",
-    body: "No per-call on-chain friction.",
+    body: "No wallet pop-ups or on-chain wait per call.",
   },
   {
     title: "x402-native",
-    body: "Simple pay-links & gateway routes.",
+    body: "Adopt x402 with minimal code: SDK + gateway.",
   },
   {
     title: "Real logs",
-    body: "Supabase-ready tracking and auditability.",
+    body: "Usage logs, alerts, and spend caps (Supabase-ready).",
   },
 ];
 
 const useCases = [
-  "AI Agents: call external tools and pay per use.",
-  "APIs: metered endpoints without subscriptions.",
-  "Creators: pay-to-unlock premium files & links.",
-  "Data Providers: charge for datasets & queries.",
+  "AI agents — call external tools and pay per use.",
+  "APIs — metered endpoints without subscriptions.",
+  "Creators — pay-to-unlock premium files & links.",
+  "Data providers — charge for datasets & queries.",
 ];
 
 const faqs = [
   {
     question: "Is this on-chain every call?",
     answer:
-      "No. Only top-ups and settlements are on-chain; per-request debits are off-chain for speed and cost.",
+      "No. Only top-ups and settlements are on-chain. Per-request debits are handled off-chain for speed and cost.",
   },
   {
     question: "Why not just subscriptions?",
     answer:
-      "Subscriptions don’t fit irregular, agent-driven workloads. We support per-request pricing cleanly.",
+      "Subscriptions don’t fit irregular, agent-driven workloads. We make per-request pricing simple.",
   },
   {
     question: "What chains/assets first?",
-    answer: "USDC on Base initially, with more assets/networks later.",
+    answer: "USDC on Base to start; more assets and networks later.",
   },
   {
     question: "How do I get in?",
@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "Pricing?",
     answer:
-      "Early users get founder-friendly pricing; we’ll publish public pricing at GA.",
+      "Early users get founder-friendly pricing; public pricing at GA.",
   },
 ];
 
@@ -100,22 +100,23 @@ export default function Home() {
       </header>
 
       <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-24 px-6 pb-24 pt-16 sm:pt-20 lg:px-8 lg:pt-32">
+        {/* HERO */}
         <section className="grid gap-12 lg:grid-cols-[1.15fr,1fr] lg:items-center">
           <div className="flex flex-col gap-8">
             <div className="inline-flex max-w-fit items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200">
-              Make payments invisible
+              x402 • per-request payments
             </div>
             <div className="flex flex-col gap-5">
               <h1 className="text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl sm:leading-tight lg:text-6xl">
-                Make 402 invisible.
+                Make payments invisible. Pay per API request.
               </h1>
               <p className="max-w-xl text-lg font-medium text-slate-200 sm:text-xl">
-                Pay-per-request credits for APIs & agents.
+                Per-request payments for APIs &amp; agents.
               </p>
               <p className="max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
-                When balance hits zero, your API returns 402—Flow402 auto-tops-up
-                in USDC and retries. You keep charging per call without on-chain
-                friction.
+                Adopt the <span className="font-semibold text-slate-200">x402</span> payment standard without building wallets or ledgers.
+                Top up once with USDC; our SDK pays per call, retries when funds run out,
+                and provides clear logs and spend limits.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -135,7 +136,7 @@ export default function Home() {
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-cyan-500/10">
             <div className="mb-4 flex items-center justify-between text-xs font-medium text-slate-400">
-              <span>HTTP 402 Example</span>
+              <span>x402 / HTTP 402 example</span>
               <span className="rounded-full border border-slate-700 px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] text-cyan-300/80">
                 x402
               </span>
@@ -146,6 +147,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* HOW IT WORKS */}
         <section aria-labelledby="how-it-works">
           <div className="mb-10 flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/70">
@@ -170,6 +172,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* WHY FLOW402 */}
         <section aria-labelledby="why-flow402" className="grid gap-10 lg:grid-cols-[1fr,1fr]">
           <div className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/70">
@@ -179,11 +182,11 @@ export default function Home() {
               id="why-flow402"
               className="text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
             >
-              Shipping for x402-native teams
+              Adopt x402 without the heavy lifting
             </h2>
             <p className="max-w-lg text-base text-slate-400">
-              Replace brittle paywalls with credits that work across agents,
-              APIs, and human flows—without pulling users on-chain every call.
+              Replace brittle paywalls with per-request payments that work across agents and APIs—
+              without dragging users on-chain every call.
             </p>
           </div>
           <div className="grid gap-4">
@@ -199,6 +202,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* USE CASES */}
         <section aria-labelledby="use-cases">
           <div className="mb-10 flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/70">
@@ -223,6 +227,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* DEV PREVIEW */}
         <section aria-labelledby="developer-preview" className="grid gap-8 lg:grid-cols-2">
           <div className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/70">
@@ -235,8 +240,8 @@ export default function Home() {
               Drop-in snippets for Flow402 integration
             </h2>
             <p className="text-base text-slate-400">
-              Test HTTP 402 flows with a single curl call, then wire credits into
-              your client or agent runtime with a few lines of TypeScript.
+              Test x402/402 flows with a single curl call, then wire per-request
+              credits into your client or agent runtime with a few lines of TypeScript.
             </p>
           </div>
           <div className="grid gap-6">
@@ -259,6 +264,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FAQ */}
         <section aria-labelledby="faq">
           <div className="mb-10 flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/70">
@@ -286,6 +292,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* APPLY */}
         <section
           id="apply"
           aria-labelledby="apply-heading"
@@ -312,7 +319,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
             © {new Date().getFullYear()} Flow402 — Internet-native payments for
-            agents & humans.
+            agents &amp; humans.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <a
